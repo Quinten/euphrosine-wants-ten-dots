@@ -12,6 +12,6 @@
     "grunt-contrib-connect": "^1.0.2",
     "grunt-contrib-watch": "^1.0.0",
     "grunt-open": "^0.2.3",
-    "phaser": "^2.6.1"
+    "phaser": "^2.6.2"
   }
 }
