@@ -87,7 +87,7 @@ var splashState = {
 
     create: function () {
 
-        var text = splashState.text = game.add.text(game.world.centerX, game.world.centerY, "In a galaxy far far away...");
+        var text = splashState.text = game.add.text(game.world.centerX, game.world.centerY, "Somewhere in space...");
         text.anchor.setTo(0.5);
 
         text.font = fontName;
