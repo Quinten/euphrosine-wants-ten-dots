@@ -41,6 +41,37 @@ var bootState = {
     }
 };
 
+var gameState = {
+
+    text: undefined,
+
+    create: function () {
+
+        var text = gameState.text = game.add.text(game.world.centerX, game.world.centerY, "The game will start\nthe 4th of november!");
+        text.anchor.setTo(0.5);
+        text.font = fontName;
+        text.fontSize = 20;
+        text.fill = colors.normalStroke;
+        text.align = 'center';
+
+    },
+
+    resize: function () {
+
+        var text = gameState.text;
+        text.x = game.world.centerX;
+        text.y = game.world.centerY;
+
+    },
+
+    shutdown: function () {
+
+        gameState.text = undefined;
+
+    }
+
+};
+
 var loadState = {
 
     nFontChecks: 0,
@@ -106,9 +137,9 @@ var menuState = {
     update: function () {
 
         if (this.spaceKey.downDuration(1000) && !this.switched) {
-            console.log('switched');
+            //console.log('switched');
             this.switched = true;
-            //game.state.start('game');
+            game.state.start('game');
         }
     },
 
@@ -205,7 +236,7 @@ window.onload = function() {
     game.state.add('load', loadState);
     game.state.add('splash', splashState);
     game.state.add('menu', menuState);
-    //game.state.add('game', gameState);
+    game.state.add('game', gameState);
 
     game.state.start('boot');
 
