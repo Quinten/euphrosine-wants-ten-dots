@@ -15,7 +15,7 @@ var splashState = {
         text.align = 'center';
 
         game.time.events.add(Phaser.Timer.SECOND * 3, function () {
-            //game.state.start('menu');
+            game.state.start('menu');
         }, this);
 
     },
