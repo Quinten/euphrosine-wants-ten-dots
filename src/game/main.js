@@ -8,8 +8,8 @@ var googleFontName = 'Inconsolata';
 var fx;
 window.PhaserGlobal = { disableWebAudio: true };
 
-var colors = {normalBG: '#2c3e50'};
-var tints = {normalBG: 0x2c3e50};
+var colors = {normalBG: '#2c3e50', normalStroke: '#ecf0f1'};
+var tints = {normalBG: 0x2c3e50, normalStroke: 0xecf0f1};
 
 WebFontConfig = {
     active: function() { fontName = googleFontName; },
@@ -24,7 +24,7 @@ window.onload = function() {
 
     game.state.add('boot', bootState);
     game.state.add('load', loadState);
-    //game.state.add('splash', splashState);
+    game.state.add('splash', splashState);
     //game.state.add('menu', menuState);
     //game.state.add('game', gameState);
 

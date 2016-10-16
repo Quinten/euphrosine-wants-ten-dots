@@ -29,7 +29,7 @@ var loadState = {
 
         loadState.nFontChecks++;
         if ((fontName == googleFontName) || (loadState.nFontChecks >= 6)) {
-            //game.state.start('splash');
+            game.state.start('splash');
         } else {
             setTimeout(loadState.checkFontLoaded, 500);
         }
