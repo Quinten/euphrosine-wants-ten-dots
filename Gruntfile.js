@@ -7,6 +7,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-uglify');
 
     grunt.initConfig({
+        pkg: grunt.file.readJSON('package.json'),
         connect: {
             server: {
                 options: {
@@ -28,7 +29,8 @@ module.exports = function(grunt) {
         },
         uglify: {
             options: {
-                mangle: false
+                mangle: false,
+                banner: '/*! <%= pkg.name %> v<%= pkg.version %> - @quintenclause - ' + '<%= grunt.template.today("yyyy-mm-dd") %> */'+'\n\n/*! Built with: Phaser v2.6.2 - http://phaser.io - @photonstorm - (c) 2016 Photon Storm Ltd.*/\n\n'
             },
             src_target: {
                 files: {
