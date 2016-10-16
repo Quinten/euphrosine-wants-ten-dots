@@ -72,10 +72,48 @@ var loadState = {
 
         loadState.nFontChecks++;
         if ((fontName == googleFontName) || (loadState.nFontChecks >= 6)) {
-            //game.state.start('splash');
+            game.state.start('splash');
         } else {
             setTimeout(loadState.checkFontLoaded, 500);
         }
+
+    }
+
+};
+
+var splashState = {
+
+    text: undefined,
+
+    create: function () {
+
+        var text = splashState.text = game.add.text(game.world.centerX, game.world.centerY, "In a galaxy far far away...");
+        text.anchor.setTo(0.5);
+
+        text.font = fontName;
+        text.fontSize = 20;
+
+        text.fill = colors.normalStroke;
+
+        text.align = 'center';
+
+        game.time.events.add(Phaser.Timer.SECOND * 3, function () {
+            //game.state.start('menu');
+        }, this);
+
+    },
+
+    resize: function () {
+
+        var text = splashState.text;
+        text.x = game.world.centerX;
+        text.y = game.world.centerY;
+
+    },
+
+    shutdown: function () {
+
+        splashState.text = undefined;
 
     }
 
@@ -91,8 +129,8 @@ var googleFontName = 'Inconsolata';
 var fx;
 window.PhaserGlobal = { disableWebAudio: true };
 
-var colors = {normalBG: '#2c3e50'};
-var tints = {normalBG: 0x2c3e50};
+var colors = {normalBG: '#2c3e50', normalStroke: '#ecf0f1'};
+var tints = {normalBG: 0x2c3e50, normalStroke: 0xecf0f1};
 
 WebFontConfig = {
     active: function() { fontName = googleFontName; },
@@ -107,7 +145,7 @@ window.onload = function() {
 
     game.state.add('boot', bootState);
     game.state.add('load', loadState);
-    //game.state.add('splash', splashState);
+    game.state.add('splash', splashState);
     //game.state.add('menu', menuState);
     //game.state.add('game', gameState);
 
