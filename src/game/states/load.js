@@ -20,7 +20,7 @@ var loadState = {
         // ...
 
         gameData = game.cache.getJSON('gameData');
-        console.log(gameData);
+        //console.log(gameData);
         this.checkFontLoaded();
 
     },
