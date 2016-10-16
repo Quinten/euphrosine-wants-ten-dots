@@ -26,7 +26,7 @@ window.onload = function() {
     game.state.add('load', loadState);
     game.state.add('splash', splashState);
     game.state.add('menu', menuState);
-    //game.state.add('game', gameState);
+    game.state.add('game', gameState);
 
     game.state.start('boot');
 
