@@ -23,7 +23,7 @@ window.onload = function() {
     game = new Phaser.Game("100%", "100%", Phaser.CANVAS, '');
 
     game.state.add('boot', bootState);
-    //game.state.add('load', loadState);
+    game.state.add('load', loadState);
     //game.state.add('splash', splashState);
     //game.state.add('menu', menuState);
     //game.state.add('game', gameState);

@@ -9,6 +9,6 @@ var bootState = {
         game.input.mouse.capture = true;
 
         // go on to preloading
-        //game.state.start('load');
+        game.state.start('load');
     }
 };
