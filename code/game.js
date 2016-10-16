@@ -37,8 +37,48 @@ var bootState = {
         game.input.mouse.capture = true;
 
         // go on to preloading
-        //game.state.start('load');
+        game.state.start('load');
     }
+};
+
+var loadState = {
+
+    nFontChecks: 0,
+
+    preload: function () {
+
+        // do preloading
+        game.load.json('gameData', 'assets/data/game.json');
+        game.load.script('webfont', '//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js');
+        //game.load.image('square', 'assets/sprites/square.png');
+        //game.load.audio('sfx', 'assets/sounds/fx_mixdown.mp3');
+
+    },
+
+    create: function () {
+
+        //fx = game.add.audio('sfx');
+        //fx.allowMultiple = true;
+        //fx.addMarker('sound_name', 1, 0.5);
+        // ...
+
+        gameData = game.cache.getJSON('gameData');
+        console.log(gameData);
+        this.checkFontLoaded();
+
+    },
+
+    checkFontLoaded: function () {
+
+        loadState.nFontChecks++;
+        if ((fontName == googleFontName) || (loadState.nFontChecks >= 6)) {
+            //game.state.start('splash');
+        } else {
+            setTimeout(loadState.checkFontLoaded, 500);
+        }
+
+    }
+
 };
 
 var game;
@@ -66,7 +106,7 @@ window.onload = function() {
     game = new Phaser.Game("100%", "100%", Phaser.CANVAS, '');
 
     game.state.add('boot', bootState);
-    //game.state.add('load', loadState);
+    game.state.add('load', loadState);
     //game.state.add('splash', splashState);
     //game.state.add('menu', menuState);
     //game.state.add('game', gameState);
