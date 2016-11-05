@@ -12,7 +12,7 @@ module.exports = function(grunt) {
             server: {
                 options: {
                     hostname: '*',
-                    port: 2051,
+                    port: 2010,
                     base: 'pub'
                 }
             }
@@ -40,7 +40,7 @@ module.exports = function(grunt) {
         },
         open: {
             dev: {
-                path: 'http://localhost:2051/'
+                path: 'http://localhost:2010/'
             }
         },
         watch: {
