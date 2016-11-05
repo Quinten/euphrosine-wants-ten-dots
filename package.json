@@ -1,10 +1,10 @@
 {
-  "name": "kong-jam-x",
+  "name": "x-is-taboo",
   "version": "0.0.1",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git@github.com:Quinten/kong-jam-x.git"
+    "url": "git@github.com:Quinten/x-is-taboo.git"
   },
   "devDependencies": {
     "grunt": "^1.0.1",
