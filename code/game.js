@@ -43,15 +43,35 @@ var bootState = {
 
 var gameState = {
 
+    map: undefined,
+    layer: undefined,
+    resizeTO: 0,
+
     create: function () {
+
+        this.map = game.add.tilemap('level');
+        this.map.addTilesetImage('tiles');
+
+        this.layer = this.map.createLayer('platformlayer');
+        //this.layer.debug = true;
+        this.layer.resizeWorld();
 
     },
 
     resize: function () {
 
+        var that = this;
+        clearTimeout(this.resizeTO);
+        this.resizeTO = setTimeout(function () {
+            that.layer.resize(game.camera.width, game.camera.height);
+        }, 1000);
+
     },
 
     shutdown: function () {
+
+        this.map = undefined;
+        this.layer = undefined;
 
     }
 
@@ -68,7 +88,8 @@ var loadState = {
         game.load.script('webfont', '//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js');
         //game.load.image('square', 'assets/sprites/square.png');
         //game.load.audio('sfx', 'assets/sounds/fx_mixdown.mp3');
-
+        game.load.tilemap('level', 'assets/tilemaps/data/level.json', null, Phaser.Tilemap.TILED_JSON);
+        game.load.image('tiles', 'assets/tilemaps/tiles/tiles.png');
     },
 
     create: function () {
