@@ -1,7 +1,14 @@
 var gameState = {
 
+    // parameters
+    // ...
+
+    // objects
     map: undefined,
     layer: undefined,
+    player: undefined,
+
+    // not parameters
     resizeTO: 0,
 
     create: function () {
@@ -12,6 +19,15 @@ var gameState = {
         this.layer = this.map.createLayer('platformlayer');
         //this.layer.debug = true;
         this.layer.resizeWorld();
+
+        this.player = game.add.sprite(32, 32, 'player');
+
+        this.player.animations.add('run-left', [0], 12, true);
+        this.player.animations.add('run-right', [0], 12, true);
+        this.player.animations.add('jump-left', [0], 12, true);
+        this.player.animations.add('jump-right', [0], 12, true);
+
+        game.camera.follow(this.player);
 
     },
 
@@ -29,6 +45,7 @@ var gameState = {
 
         this.map = undefined;
         this.layer = undefined;
+        this.player = undefined;
 
     }
 
