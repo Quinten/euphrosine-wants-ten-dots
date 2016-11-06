@@ -8,8 +8,8 @@ var googleFontName = 'Inconsolata';
 var fx;
 window.PhaserGlobal = { disableWebAudio: true };
 
-var colors = {normalBG: '#2c3e50', normalStroke: '#ecf0f1'};
-var tints = {normalBG: 0x2c3e50, normalStroke: 0xecf0f1};
+var colors = {normalBG: '#91d2d9', normalStroke: '#c0392b'};
+var tints = {normalBG: 0x91d2d9, normalStroke: 0xc0392b};
 
 WebFontConfig = {
     active: function() { fontName = googleFontName; },

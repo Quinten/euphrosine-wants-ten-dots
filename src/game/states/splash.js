@@ -4,7 +4,7 @@ var splashState = {
 
     create: function () {
 
-        var text = splashState.text = game.add.text(game.world.centerX, game.world.centerY, "Because everyone wants dots...");
+        var text = splashState.text = game.add.text(game.world.centerX, game.world.centerY, "Because everyone loves dots...");
         text.anchor.setTo(0.5);
 
         text.font = fontName;

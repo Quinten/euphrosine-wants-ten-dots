@@ -1,6 +1,6 @@
 # Euphrosine wants ten dots
 
-### Because everyone wants dots...
+### Because everyone loves dots...
 
 ## Briefing
 
