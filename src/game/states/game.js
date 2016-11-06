@@ -25,7 +25,7 @@ var gameState = {
     create: function () {
 
         game.physics.startSystem(Phaser.Physics.ARCADE);
-        game.physics.arcade.gravity.y = 500;
+        game.physics.arcade.gravity.y = 800;
 
         this.map = game.add.tilemap('level');
         this.map.addTilesetImage('tiles');
@@ -102,7 +102,7 @@ var gameState = {
         game.physics.arcade.collide(this.player, this.layer);
 
         if (this.jumpButton.isDown && (this.player.body.onFloor() || this.isClimbing) && game.time.now > this.jumpTimer) {
-            this.player.body.velocity.y = -300;
+            this.player.body.velocity.y = -500;
             this.jumpTimer = game.time.now + 750;
             if (this.isClimbing) {
                 this.climbTimer = game.time.now + 750;
@@ -139,7 +139,7 @@ var gameState = {
             this.player.body.velocity.x = 0;
 
             if (this.cursors.left.isDown) {
-                this.player.body.velocity.x = -125;
+                this.player.body.velocity.x = -200;
 
                 this.facing = 'left';
                 if (this.player.body.onFloor()) {
@@ -149,7 +149,7 @@ var gameState = {
                 }
 
             } else if (this.cursors.right.isDown) {
-                this.player.body.velocity.x = 125;
+                this.player.body.velocity.x = 200;
 
                 this.facing = 'right';
                 if (this.player.body.onFloor()) {
