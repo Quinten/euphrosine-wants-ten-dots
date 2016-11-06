@@ -46,7 +46,7 @@ var gameState = {
     // parameters
     tilemapName: 'level',
     tilesetImageName: 'tiles',
-    startPoint: {x: 32, y: 32},
+    startPoint: {x: 880, y: 1920},
 
     // objects
     map: undefined,
@@ -321,6 +321,8 @@ var menuState = {
 
     menuGroup: undefined,
     switched: false,
+    textstart: undefined,
+    blinkCount: 0,
 
     create: function () {
 
@@ -328,7 +330,11 @@ var menuState = {
         this.menuGroup.x = game.world.centerX;
         this.menuGroup.y = game.world.centerY;
 
-        var textsprite = this.menuGroup.add(this.createText(0, -80, 'Ready?\nHit spacebar'));
+        var textsprite = this.menuGroup.add(this.createText(0, 0, 'Euphrosine wants ten dots', colors.normalStroke, 69));
+        this.textstart = this.menuGroup.add(this.createText(0, 142, 'Hit spacebar', colors.normalStroke, 42));
+
+        //var startimage = this.menuGroup.add(game.add.sprite(0, 0, 'startscreen'));
+        //startimage.anchor.setTo(0.5);
 
         //  Register the key.
         this.spaceKey = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
@@ -346,6 +352,12 @@ var menuState = {
             this.switched = true;
             game.state.start('game');
         }
+
+        this.blinkCount++;
+        if (this.blinkCount > 15) {
+            this.blinkCount = 0;
+            this.textstart.visible = !this.textstart.visible;
+        }
     },
 
     resize: function () {
@@ -358,16 +370,17 @@ var menuState = {
     shutdown: function () {
 
         this.menuGroup = undefined;
+        this.textstart = undefined;
 
     },
 
-    createText: function (x, y, text) {
+    createText: function (x, y, text, color, size) {
 
         var textSprite = game.add.text(x, y, text);
         textSprite.anchor.setTo(0.5);
         textSprite.font = fontName;
-        textSprite.fontSize = 32;
-        textSprite.fill = colors.normalStroke;
+        textSprite.fontSize = size;
+        textSprite.fill = color;
         textSprite.align = 'center';
 
         return textSprite;
@@ -385,7 +398,7 @@ var splashState = {
         text.anchor.setTo(0.5);
 
         text.font = fontName;
-        text.fontSize = 20;
+        text.fontSize = 42;
 
         text.fill = colors.normalStroke;
 
@@ -418,7 +431,7 @@ var game;
 var gameData;
 
 var fontName = 'monospace';
-var googleFontName = 'Snowburst One';
+var googleFontName = 'Sue Ellen Francisco';
 
 var fx;
 window.PhaserGlobal = { disableWebAudio: true };

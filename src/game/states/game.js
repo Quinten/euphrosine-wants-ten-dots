@@ -3,7 +3,7 @@ var gameState = {
     // parameters
     tilemapName: 'level',
     tilesetImageName: 'tiles',
-    startPoint: {x: 32, y: 32},
+    startPoint: {x: 880, y: 1920},
 
     // objects
     map: undefined,

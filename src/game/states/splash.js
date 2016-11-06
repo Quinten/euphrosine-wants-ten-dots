@@ -8,7 +8,7 @@ var splashState = {
         text.anchor.setTo(0.5);
 
         text.font = fontName;
-        text.fontSize = 20;
+        text.fontSize = 42;
 
         text.fill = colors.normalStroke;
 

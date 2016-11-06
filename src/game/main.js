@@ -3,7 +3,7 @@ var game;
 var gameData;
 
 var fontName = 'monospace';
-var googleFontName = 'Snowburst One';
+var googleFontName = 'Sue Ellen Francisco';
 
 var fx;
 window.PhaserGlobal = { disableWebAudio: true };
