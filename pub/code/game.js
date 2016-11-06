@@ -418,7 +418,7 @@ var game;
 var gameData;
 
 var fontName = 'monospace';
-var googleFontName = 'Inconsolata';
+var googleFontName = 'Snowburst One';
 
 var fx;
 window.PhaserGlobal = { disableWebAudio: true };
