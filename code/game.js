@@ -88,7 +88,7 @@ var gameState = {
         game.physics.enable(this.player, Phaser.Physics.ARCADE);
         //this.player.body.bounce.y = 0.2;
         this.player.body.collideWorldBounds = true;
-        this.player.body.setSize(48, 48, 0, 0); // will need tweaking when we have a graphic
+        this.player.body.setSize(32, 32, 0, 0); // will need tweaking when we have a graphic
 
         this.player.animations.add('idle-left', [0], 12, true);
         this.player.animations.add('idle-right', [0], 12, true);
@@ -257,7 +257,7 @@ var loadState = {
         //game.load.audio('sfx', 'assets/sounds/fx_mixdown.mp3');
         game.load.tilemap('level', 'assets/tilemaps/data/level.json', null, Phaser.Tilemap.TILED_JSON);
         game.load.image('tiles', 'assets/tilemaps/tiles/tiles.png');
-        game.load.spritesheet('player', 'assets/sprites/player.png', 48, 48);
+        game.load.spritesheet('player', 'assets/sprites/player.png', 32, 32);
 
     },
 
