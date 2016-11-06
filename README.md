@@ -1,6 +1,6 @@
-# X is taboo
+# Euphrosine wants ten dots
 
-### Everyone is a number...
+### Because everyone wants dots...
 
 ## Briefing
 
@@ -20,7 +20,7 @@ Modifier #3 - Two Buttons
 
 ~~Bonus Modifier - This Vine~~
 
-## Concept
+## (Old) Concept
 
 It is an autorun platform game where you are a running ladybug with one digit on your back (1 to 9). You run automatically but can change direction(left or right) by pressing `d` or jump by pressing `w`. (You can remap these keys).
 
@@ -41,3 +41,7 @@ There are 9 different insects with different abilities:
 - 9: dropping and changing direction on collision
 
 Some insects collide, some pass each other
+
+## Simpler Concept
+
+You play as the ladybug Euphrosine. That likes dice and wants to collect their dots. You can run, jump, climb and float.
