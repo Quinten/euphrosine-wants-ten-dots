@@ -48,7 +48,7 @@ var gameState = {
 
         game.physics.enable(this.player, Phaser.Physics.ARCADE);
         //this.player.body.bounce.y = 0.2;
-        this.player.body.collideWorldBounds = true;
+        //this.player.body.collideWorldBounds = true;
         this.player.body.setSize(32, 32, 0, 0); // will need tweaking when we have a graphic
 
         this.player.animations.add('idle-left', [0], 12, true);
@@ -108,6 +108,18 @@ var gameState = {
             this.player.body.checkCollision.left = true;
             this.player.body.checkCollision.right = true;
             this.player.body.checkCollision.up = true;
+        }
+
+        if (this.player.body.x > 2048) {
+            this.player.body.x -= 2048;
+        } else if (this.player.body.x < -32) {
+            this.player.body.x += 2048;
+        }
+
+        if (this.player.body.y > 2048) {
+            this.player.body.y -= 2048;
+        } else if (this.player.body.y < -32) {
+            this.player.body.y += 2048;
         }
 
         game.physics.arcade.collide(this.player, this.layer);
