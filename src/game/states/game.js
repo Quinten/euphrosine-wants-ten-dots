@@ -32,6 +32,8 @@ var gameState = {
 
         this.map.setCollisionByExclusion([]);
 
+        this.map.forEach(this.setCollisionDirectionOf, this, 0, 0, 128, 128);
+
         this.layer = this.map.createLayer('platformlayer');
         //this.layer.debug = true;
         this.layer.resizeWorld();
@@ -62,6 +64,13 @@ var gameState = {
         this.cursors = game.input.keyboard.createCursorKeys();
         this.jumpButton = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
 
+    },
+
+    setCollisionDirectionOf: function (tile) {
+        tile.collideDown = false;
+        tile.collideLeft = false;
+        tile.collideRight = false;
+        //tile.collideUp = false;
     },
 
     update: function () {
