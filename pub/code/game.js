@@ -67,6 +67,8 @@ var gameState = {
 
     create: function () {
 
+        game.time.advancedTiming = true; // for debuging the fps
+
         game.physics.startSystem(Phaser.Physics.ARCADE);
         game.physics.arcade.gravity.y = 800;
 
@@ -248,6 +250,13 @@ var gameState = {
         this.player = undefined;
         this.cursors = undefined;
         this.jumpButton = undefined;
+
+    },
+
+    render: function () {
+
+        game.debug.text('FPS:' + game.time.fps, 32, 32, "#ffffff");
+        game.debug.spriteInfo(this.player, 32, 64);
 
     }
 
