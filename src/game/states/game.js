@@ -45,7 +45,7 @@ var gameState = {
         game.physics.enable(this.player, Phaser.Physics.ARCADE);
         //this.player.body.bounce.y = 0.2;
         this.player.body.collideWorldBounds = true;
-        this.player.body.setSize(48, 48, 0, 0); // will need tweaking when we have a graphic
+        this.player.body.setSize(32, 32, 0, 0); // will need tweaking when we have a graphic
 
         this.player.animations.add('idle-left', [0], 12, true);
         this.player.animations.add('idle-right', [0], 12, true);
