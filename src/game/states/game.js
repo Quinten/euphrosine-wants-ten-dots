@@ -59,7 +59,7 @@ var gameState = {
         this.player.animations.add('jump-right', [13], 12, true);
         this.player.animations.add('float-left', [0], 12, true);
         this.player.animations.add('float-right', [2], 12, true);
-        this.player.animations.add('climb', [0], 12, true);
+        this.player.animations.add('climb', [14,15,16,17], 12, true);
 
         game.camera.follow(this.player);
 
