@@ -92,7 +92,7 @@ var gameState = {
         game.physics.enable(this.player, Phaser.Physics.ARCADE);
         //this.player.body.bounce.y = 0.2;
         //this.player.body.collideWorldBounds = true;
-        this.player.body.setSize(32, 32, 0, 0); // will need tweaking when we have a graphic
+        this.player.body.setSize(16, 20, 8, 12); // will need tweaking when we have a graphic
 
         this.player.animations.add('idle-left', [0,0,0,0,0,0,0,0,1,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1], 8, true);
         this.player.animations.add('idle-right', [2,2,2,2,2,2,2,2,3,2,2,2,3,2,3,2,2,2,2,2,2,2,2,2,2,2,2,3], 8, true);
@@ -168,7 +168,7 @@ var gameState = {
         game.physics.arcade.collide(this.player, this.layer);
 
         if (this.jumpButton.isDown && (this.player.body.onFloor() || this.isClimbing) && game.time.now > this.jumpTimer) {
-            this.player.body.velocity.y = -500;
+            this.player.body.velocity.y = -384;
             this.jumpTimer = game.time.now + 750;
             if (this.isClimbing) {
                 this.climbTimer = game.time.now + 750;
@@ -268,7 +268,7 @@ var gameState = {
     render: function () {
 
         game.debug.text('FPS: ' + game.time.fps, 32, 32, "#ffffff");
-        game.debug.spriteInfo(this.player, 32, 64);
+        //game.debug.spriteInfo(this.player, 32, 64);
 
     }
 
