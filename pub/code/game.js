@@ -83,7 +83,7 @@ var gameState = {
         //this.layer.debug = true;
         this.layer.resizeWorld();
 
-        //this.climbLayer = this.map.createLayer('climblayer');
+        this.climbLayer = this.map.createLayer('climblayer');
         //this.climbLayer.debug = true;
         //this.climbLayer.resizeWorld();
 
@@ -121,10 +121,10 @@ var gameState = {
     update: function () {
 
         this.canClimb = false;
-        //var climbTiles = this.climbLayer.getTiles(this.player.body.x, this.player.body.y, this.player.body.width, this.player.body.height, false, false);
-        climbTiles = []; // tmp disable climbing
+        var climbTiles = this.climbLayer.getTiles(this.player.body.x, this.player.body.y, this.player.body.width, this.player.body.height, false, false);
+        //climbTiles = []; // tmp disable climbing
         for (var c = 0; c < climbTiles.length; c++) {
-            if (climbTiles[c].index > -1) {
+            if (climbTiles[c].index > 143) {
                 this.canClimb = true;
             }
         }
@@ -249,7 +249,7 @@ var gameState = {
         clearTimeout(this.resizeTO);
         this.resizeTO = setTimeout(function () {
             that.layer.resize(game.camera.width, game.camera.height);
-            //that.climbLayer.resize(game.camera.width, game.camera.height);
+            that.climbLayer.resize(game.camera.width, game.camera.height);
         }, 1000);
 
     },
