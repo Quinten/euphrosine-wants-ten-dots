@@ -100,8 +100,7 @@ var gameState = {
         this.player.animations.add('run-right', [8,9,10,11], 12, true);
         this.player.animations.add('jump-left', [12], 12, true);
         this.player.animations.add('jump-right', [13], 12, true);
-        this.player.animations.add('float-left', [0], 12, true);
-        this.player.animations.add('float-right', [2], 12, true);
+        this.player.animations.add('float', [18,19,20,21], 12, true);
         this.player.animations.add('climb', [14,15,16,17], 12, true);
 
         game.camera.follow(this.player);
@@ -211,7 +210,13 @@ var gameState = {
                 if (this.player.body.onFloor()) {
                     this.player.animations.play('run-left');
                 } else {
-                    this.player.animations.play('jump-left');
+                    if (this.cursors.up.isDown) {
+                        // float
+                        this.player.body.velocity.y = Math.min(40, this.player.body.velocity.y);
+                        this.player.animations.play('float');
+                    } else {
+                        this.player.animations.play('jump-left');
+                    }
                 }
 
             } else if (this.cursors.right.isDown) {
@@ -221,22 +226,36 @@ var gameState = {
                 if (this.player.body.onFloor()) {
                     this.player.animations.play('run-right');
                 } else {
-                    this.player.animations.play('jump-right');
+                    if (this.cursors.up.isDown) {
+                        // float
+                        this.player.body.velocity.y = Math.min(40, this.player.body.velocity.y);
+                        this.player.animations.play('float');
+                    } else {
+                        this.player.animations.play('jump-right');
+                    }
                 }
 
             } else {
 
                 if (this.player.body.onFloor()) {
+                    // idle
                     if (this.facing == 'left') {
                         this.player.animations.play('idle-left');
                     } else {
                         this.player.animations.play('idle-right');
                     }
                 } else {
-                    if (this.facing == 'left') {
-                        this.player.animations.play('jump-left');
+                    if (this.cursors.up.isDown) {
+                        // float
+                        this.player.body.velocity.y = Math.min(40, this.player.body.velocity.y);
+                        this.player.animations.play('float');
                     } else {
-                        this.player.animations.play('jump-right');
+                        // flail
+                        if (this.facing == 'left') {
+                            this.player.animations.play('jump-left');
+                        } else {
+                            this.player.animations.play('jump-right');
+                        }
                     }
                 }
             }
