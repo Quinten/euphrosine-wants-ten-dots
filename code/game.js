@@ -94,14 +94,14 @@ var gameState = {
         //this.player.body.collideWorldBounds = true;
         this.player.body.setSize(32, 32, 0, 0); // will need tweaking when we have a graphic
 
-        this.player.animations.add('idle-left', [0], 12, true);
-        this.player.animations.add('idle-right', [0], 12, true);
-        this.player.animations.add('run-left', [0], 12, true);
-        this.player.animations.add('run-right', [0], 12, true);
-        this.player.animations.add('jump-left', [0], 12, true);
-        this.player.animations.add('jump-right', [0], 12, true);
+        this.player.animations.add('idle-left', [0,0,0,0,0,0,0,0,1,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1], 8, true);
+        this.player.animations.add('idle-right', [2,2,2,2,2,2,2,2,3,2,2,2,3,2,3,2,2,2,2,2,2,2,2,2,2,2,2,3], 8, true);
+        this.player.animations.add('run-left', [4,5,6,7], 12, true);
+        this.player.animations.add('run-right', [8,9,10,11], 12, true);
+        this.player.animations.add('jump-left', [12], 12, true);
+        this.player.animations.add('jump-right', [13], 12, true);
         this.player.animations.add('float-left', [0], 12, true);
-        this.player.animations.add('float-right', [0], 12, true);
+        this.player.animations.add('float-right', [2], 12, true);
         this.player.animations.add('climb', [0], 12, true);
 
         game.camera.follow(this.player);
