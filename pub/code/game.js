@@ -153,16 +153,16 @@ var gameState = {
             this.player.body.checkCollision.up = true;
         }
 
-        if (this.player.body.x > 2048) {
-            this.player.body.x -= 2048;
-        } else if (this.player.body.x < -32) {
-            this.player.body.x += 2048;
+        if (this.player.body.x > 2040) {
+            this.player.body.x -= 2040;
+        } else if (this.player.body.x < -0) {
+            this.player.body.x += 2040;
         }
 
         if (this.player.body.y > 2048) {
             this.player.body.y -= 2048;
-        } else if (this.player.body.y < -32) {
-            this.player.body.y += 2048;
+        } else if (this.player.body.y < 0) {
+            this.player.body.y += 2044;
         }
 
         game.physics.arcade.collide(this.player, this.layer);
