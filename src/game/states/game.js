@@ -12,6 +12,7 @@ var gameState = {
     player: undefined,
     cursors: undefined,
     jumpButton: undefined,
+    enemy: undefined,
 
     // not parameters
     facing: 'left',
@@ -64,6 +65,14 @@ var gameState = {
 
         this.cursors = game.input.keyboard.createCursorKeys();
         this.jumpButton = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+
+        this.enemy = game.add.sprite(960, 96, 'enemy');
+        game.physics.enable(this.enemy, Phaser.Physics.ARCADE);
+        this.enemy.body.setSize(20, 20, 6, 12);
+
+        this.enemy.animations.add('idle', [0], 8, true);
+        this.enemy.animations.add('roll-left', [0,2,1], 12, true);
+        this.enemy.animations.add('roll-right', [0,1,2], 12, true);
 
     },
 
@@ -217,6 +226,52 @@ var gameState = {
                 }
             }
         }
+
+        // enemy movment
+        game.physics.arcade.collide(this.enemy, this.layer);
+
+        this.enemy.body.velocity.x = 0;
+
+        if (this.enemy.body.onFloor()) {
+            if (this.enemy.body.x < 1024) {
+                if (this.enemy.body.x > this.player.body.x) {
+                    this.enemy.body.velocity.x = 180;
+                    this.enemy.animations.play('roll-right');
+                } else if (this.player.body.x >= 1536) {
+                    this.enemy.body.velocity.x = 180;
+                    this.enemy.animations.play('roll-right');
+                } else {
+                    this.enemy.body.velocity.x = -180;
+                    this.enemy.animations.play('roll-left');
+                }
+            } else if (this.enemy.body.x >= 1024) {
+                if (this.enemy.body.x < this.player.body.x) {
+                    this.enemy.body.velocity.x = -180;
+                    this.enemy.animations.play('roll-left');
+                } else if (this.player.body.x <= 512) {
+                    this.enemy.body.velocity.x = -180;
+                    this.enemy.animations.play('roll-left');
+                } else {
+                    this.enemy.body.velocity.x = 180;
+                    this.enemy.animations.play('roll-right');
+                }
+            }
+        } else {
+            this.enemy.animations.play('idle');
+        }
+
+        if (this.enemy.body.x > 2040) {
+            this.enemy.body.x -= 2040;
+        } else if (this.enemy.body.x < -0) {
+            this.enemy.body.x += 2040;
+        }
+
+        if (this.enemy.body.y > 2048) {
+            this.enemy.body.y -= 2048;
+        } else if (this.enemy.body.y < 0) {
+            this.enemy.body.y += 2044;
+        }
+
     },
 
     resize: function () {
@@ -244,7 +299,8 @@ var gameState = {
     render: function () {
 
         game.debug.text('FPS: ' + game.time.fps, 32, 32, "#ffffff");
-        //game.debug.spriteInfo(this.player, 32, 64);
+        game.debug.spriteInfo(this.player, 32, 64);
+        game.debug.spriteInfo(this.enemy, 496, 64);
 
     }
 
