@@ -315,6 +315,8 @@ var gameState = {
             //this.enemy.body.y += 2044;
         //}
 
+        clouds.tilePosition.x -= 1;
+
     },
 
     resize: function () {
@@ -326,6 +328,11 @@ var gameState = {
             that.climbLayer.resize(game.camera.width, game.camera.height);
         }, 1000);
 
+        clouds.x = 0;
+        clouds.y = 0;
+        clouds.width = game.width;
+        clouds.height = game.height;
+
     },
 
     shutdown: function () {
@@ -336,7 +343,7 @@ var gameState = {
         this.player = undefined;
         this.cursors = undefined;
         this.jumpButton = undefined;
-
+        this.enemy = undefined;
     },
 
     render: function () {
@@ -364,6 +371,7 @@ var loadState = {
         game.load.image('tiles', 'assets/tilemaps/tiles/tiles.png');
         game.load.spritesheet('player', 'assets/sprites/player.png', 32, 32);
         game.load.spritesheet('enemy', 'assets/sprites/enemy.png', 32, 32);
+        game.load.image('clouds', 'assets/sprites/clouds.png');
 
     },
 
@@ -434,12 +442,20 @@ var menuState = {
             this.blinkCount = 0;
             this.textstart.visible = !this.textstart.visible;
         }
+
+        clouds.tilePosition.x -= 1;
+
     },
 
     resize: function () {
 
         this.menuGroup.x = game.world.centerX;
         this.menuGroup.y = game.world.centerY;
+
+        clouds.x = 0;
+        clouds.y = 0;
+        clouds.width = game.width;
+        clouds.height = game.height;
 
     },
 
@@ -470,6 +486,9 @@ var splashState = {
 
     create: function () {
 
+        clouds = game.make.tileSprite(0, 0, game.width, game.height, 'clouds');
+        game.stage.addChildAt(clouds, 0);
+
         var text = splashState.text = game.add.text(game.world.centerX, game.world.centerY, "Because everyone loves dots...");
         text.anchor.setTo(0.5);
 
@@ -486,11 +505,22 @@ var splashState = {
 
     },
 
+    update: function () {
+
+        clouds.tilePosition.x -= 1;
+
+    },
+
     resize: function () {
 
         var text = splashState.text;
         text.x = game.world.centerX;
         text.y = game.world.centerY;
+
+        clouds.x = 0;
+        clouds.y = 0;
+        clouds.width = game.width;
+        clouds.height = game.height;
 
     },
 
@@ -514,6 +544,8 @@ window.PhaserGlobal = { disableWebAudio: true };
 
 var colors = {normalBG: '#91d2d9', normalStroke: '#c0392b'};
 var tints = {normalBG: 0x91d2d9, normalStroke: 0xc0392b};
+
+var clouds;
 
 WebFontConfig = {
     active: function() { fontName = googleFontName; },
