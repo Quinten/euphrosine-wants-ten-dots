@@ -268,9 +268,9 @@ var gameState = {
 
         if (this.enemy.body.y > 2048) {
             this.enemy.body.y -= 2048;
-        } else if (this.enemy.body.y < 0) {
-            this.enemy.body.y += 2044;
-        }
+        }//else if (this.enemy.body.y < 0) {
+            //this.enemy.body.y += 2044;
+        //}
 
     },
 
