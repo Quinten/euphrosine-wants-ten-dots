@@ -64,6 +64,8 @@ var gameState = {
     isClimbing: false,
     justClimbed: false,
     climbTimer: 0,
+    enemyDirection: 'left',
+    enemyTurnTimer: 0,
     resizeTO: 0,
 
     create: function () {
@@ -276,31 +278,41 @@ var gameState = {
         this.enemy.body.velocity.x = 0;
 
         if (this.enemy.body.onFloor()) {
-            if (this.enemy.body.x < 1024) {
-                if (this.enemy.body.x > this.player.body.x) {
-                    this.enemy.body.velocity.x = 180;
-                    this.enemy.animations.play('roll-right');
-                } else if (this.player.body.x >= 1536) {
-                    this.enemy.body.velocity.x = 180;
-                    this.enemy.animations.play('roll-right');
+
+            if (game.time.now > this.enemyTurnTimer) {
+
+                this.enemyTurnTimer = game.time.now + 1500;
+
+                if (this.enemy.body.x < 1024) {
+                    if (this.enemy.body.x > this.player.body.x) {
+                        this.enemyDirection = 'right';
+                    } else if (this.player.body.x >= 1536) {
+                        this.enemyDirection = 'right';
+                    } else {
+                        this.enemyDirection = 'left';
+                    }
                 } else {
-                    this.enemy.body.velocity.x = -180;
-                    this.enemy.animations.play('roll-left');
-                }
-            } else if (this.enemy.body.x >= 1024) {
-                if (this.enemy.body.x < this.player.body.x) {
-                    this.enemy.body.velocity.x = -180;
-                    this.enemy.animations.play('roll-left');
-                } else if (this.player.body.x <= 512) {
-                    this.enemy.body.velocity.x = -180;
-                    this.enemy.animations.play('roll-left');
-                } else {
-                    this.enemy.body.velocity.x = 180;
-                    this.enemy.animations.play('roll-right');
+                    if (this.enemy.body.x < this.player.body.x) {
+                        this.enemyDirection = 'left';
+                    } else if (this.player.body.x <= 512) {
+                        this.enemyDirection = 'left';
+                    } else {
+                        this.enemyDirection = 'right';
+                    }
                 }
             }
+
+            if (this.enemyDirection === 'left') {
+                this.enemy.body.velocity.x = -180;
+                this.enemy.animations.play('roll-left');
+            } else {
+                this.enemy.body.velocity.x = 180;
+                this.enemy.animations.play('roll-right');
+            }
+
         } else {
             this.enemy.animations.play('idle');
+            this.enemyTurnTimer = game.time.now;
         }
 
         if (this.enemy.body.x > 2040) {
