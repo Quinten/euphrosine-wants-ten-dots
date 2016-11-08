@@ -16,6 +16,10 @@ var loadState = {
         game.load.image('clouds', 'assets/sprites/clouds.png');
         game.load.spritesheet('particles', 'assets/sprites/particles.png', 16, 16);
 
+        for (var p = 0; p <= 10; p++) {
+            game.load.spritesheet('player-' + p, 'assets/sprites/player-' + p + '.png', 32, 32);
+        }
+
     },
 
     create: function () {

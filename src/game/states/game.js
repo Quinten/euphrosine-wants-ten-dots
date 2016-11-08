@@ -24,6 +24,7 @@ var gameState = {
     climbTimer: 0,
     enemyDirection: 'left',
     enemyTurnTimer: 0,
+    score: 0,
     resizeTO: 0,
 
     create: function () {
@@ -153,7 +154,6 @@ var gameState = {
                 this.player.body.allowGravity = true;
             }
         }
-
 
         if (this.isClimbing) {
 
@@ -305,6 +305,7 @@ var gameState = {
 
     playerEnemyOverlapped: function (player, enemy) {
 
+        // fx
         game.camera.shake(0.05, 500);
         this.emitter.x = this.player.x;
         this.emitter.y = this.player.y;
@@ -318,6 +319,14 @@ var gameState = {
         this.enemy.body.y = -32;
         this.enemy.body.velocity.x = 0;
         this.enemy.body.velocity.y = 0;
+
+        // update score
+        this.score++;
+        if (this.score >= 10) {
+            console.log('You won!');
+            this.score = 10;
+        }
+        this.player.loadTexture('player-' + this.score);
 
     },
 
