@@ -67,6 +67,7 @@ var gameState = {
     climbTimer: 0,
     enemyDirection: 'left',
     enemyTurnTimer: 0,
+    score: 0,
     resizeTO: 0,
 
     create: function () {
@@ -128,7 +129,7 @@ var gameState = {
         this.emitter.bounce.setTo(0.5, 0.5);
         this.emitter.minRotation = 0;
         this.emitter.maxRotation = 0;
-    
+
     },
 
     setCollisionDirectionOf: function (tile) {
@@ -196,7 +197,6 @@ var gameState = {
                 this.player.body.allowGravity = true;
             }
         }
-
 
         if (this.isClimbing) {
 
@@ -348,6 +348,7 @@ var gameState = {
 
     playerEnemyOverlapped: function (player, enemy) {
 
+        // fx
         game.camera.shake(0.05, 500);
         this.emitter.x = this.player.x;
         this.emitter.y = this.player.y;
@@ -361,6 +362,14 @@ var gameState = {
         this.enemy.body.y = -32;
         this.enemy.body.velocity.x = 0;
         this.enemy.body.velocity.y = 0;
+
+        // update score
+        this.score++;
+        if (this.score >= 10) {
+            console.log('You won!');
+            this.score = 10;
+        }
+        this.player.loadTexture('player-' + this.score);
 
     },
 
@@ -420,6 +429,10 @@ var loadState = {
         game.load.spritesheet('enemy', 'assets/sprites/enemy.png', 32, 32);
         game.load.image('clouds', 'assets/sprites/clouds.png');
         game.load.spritesheet('particles', 'assets/sprites/particles.png', 16, 16);
+
+        for (var p = 0; p <= 10; p++) {
+            game.load.spritesheet('player-' + p, 'assets/sprites/player-' + p + '.png', 32, 32);
+        }
 
     },
 
