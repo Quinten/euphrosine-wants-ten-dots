@@ -56,6 +56,7 @@ var gameState = {
     cursors: undefined,
     jumpButton: undefined,
     enemy: undefined,
+    emitter: undefined,
 
     // not parameters
     facing: 'left',
@@ -119,6 +120,15 @@ var gameState = {
         this.enemy.animations.add('roll-left', [0,2,1], 12, true);
         this.enemy.animations.add('roll-right', [0,1,2], 12, true);
 
+        this.emitter = game.add.emitter(this.player.position.x, this.player.position.y, 200);
+        this.emitter.makeParticles('particles', [0,1,2], 200, true, false);
+        this.emitter.minParticleSpeed.setTo(-200, -300);
+        this.emitter.maxParticleSpeed.setTo(200, -400);
+        this.emitter.gravity = 150;
+        this.emitter.bounce.setTo(0.5, 0.5);
+        this.emitter.minRotation = 0;
+        this.emitter.maxRotation = 0;
+    
     },
 
     setCollisionDirectionOf: function (tile) {
@@ -327,7 +337,30 @@ var gameState = {
             //this.enemy.body.y += 2044;
         //}
 
+        game.physics.arcade.overlap(this.player, this.enemy, this.playerEnemyOverlapped, null, this);
+
+        game.physics.arcade.collide(this.emitter, this.layer);
+        this.emitter.forEachExists(game.world.wrap, game.world);
+
         clouds.tilePosition.x -= 1;
+
+    },
+
+    playerEnemyOverlapped: function (player, enemy) {
+
+        game.camera.shake(0.05, 500);
+        this.emitter.x = this.player.x;
+        this.emitter.y = this.player.y;
+        this.emitter.start(true, 8000, null, 40);
+
+        // move enemy
+        this.enemy.body.x += 1024;
+        if (this.enemy.body.x > 2048) {
+            this.enemy.body.x -= 2048;
+        }
+        this.enemy.body.y = -32;
+        this.enemy.body.velocity.x = 0;
+        this.enemy.body.velocity.y = 0;
 
     },
 
@@ -356,6 +389,8 @@ var gameState = {
         this.cursors = undefined;
         this.jumpButton = undefined;
         this.enemy = undefined;
+        this.emitter = undefined;
+
     },
 
     render: function () {
@@ -384,6 +419,7 @@ var loadState = {
         game.load.spritesheet('player', 'assets/sprites/player.png', 32, 32);
         game.load.spritesheet('enemy', 'assets/sprites/enemy.png', 32, 32);
         game.load.image('clouds', 'assets/sprites/clouds.png');
+        game.load.spritesheet('particles', 'assets/sprites/particles.png', 16, 16);
 
     },
 

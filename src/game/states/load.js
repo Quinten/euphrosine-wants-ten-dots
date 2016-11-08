@@ -14,6 +14,7 @@ var loadState = {
         game.load.spritesheet('player', 'assets/sprites/player.png', 32, 32);
         game.load.spritesheet('enemy', 'assets/sprites/enemy.png', 32, 32);
         game.load.image('clouds', 'assets/sprites/clouds.png');
+        game.load.spritesheet('particles', 'assets/sprites/particles.png', 16, 16);
 
     },
 
