@@ -39,12 +39,20 @@ var menuState = {
             this.blinkCount = 0;
             this.textstart.visible = !this.textstart.visible;
         }
+
+        clouds.tilePosition.x -= 1;
+
     },
 
     resize: function () {
 
         this.menuGroup.x = game.world.centerX;
         this.menuGroup.y = game.world.centerY;
+
+        clouds.x = 0;
+        clouds.y = 0;
+        clouds.width = game.width;
+        clouds.height = game.height;
 
     },
 

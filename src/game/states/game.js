@@ -272,6 +272,8 @@ var gameState = {
             //this.enemy.body.y += 2044;
         //}
 
+        clouds.tilePosition.x -= 1;
+
     },
 
     resize: function () {
@@ -283,6 +285,11 @@ var gameState = {
             that.climbLayer.resize(game.camera.width, game.camera.height);
         }, 1000);
 
+        clouds.x = 0;
+        clouds.y = 0;
+        clouds.width = game.width;
+        clouds.height = game.height;
+
     },
 
     shutdown: function () {
@@ -293,7 +300,7 @@ var gameState = {
         this.player = undefined;
         this.cursors = undefined;
         this.jumpButton = undefined;
-
+        this.enemy = undefined;
     },
 
     render: function () {

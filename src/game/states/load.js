@@ -13,6 +13,7 @@ var loadState = {
         game.load.image('tiles', 'assets/tilemaps/tiles/tiles.png');
         game.load.spritesheet('player', 'assets/sprites/player.png', 32, 32);
         game.load.spritesheet('enemy', 'assets/sprites/enemy.png', 32, 32);
+        game.load.image('clouds', 'assets/sprites/clouds.png');
 
     },
 
