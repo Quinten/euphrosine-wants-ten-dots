@@ -362,8 +362,8 @@ var gameState = {
     render: function () {
 
         game.debug.text('FPS: ' + game.time.fps, 32, 32, "#ffffff");
-        game.debug.spriteInfo(this.player, 32, 64);
-        game.debug.spriteInfo(this.enemy, 496, 64);
+        //game.debug.spriteInfo(this.player, 32, 64);
+        //game.debug.spriteInfo(this.enemy, 496, 64);
 
     }
 
