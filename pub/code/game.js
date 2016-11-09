@@ -57,6 +57,8 @@ var gameState = {
     jumpButton: undefined,
     enemy: undefined,
     emitter: undefined,
+    gameCompleteText: undefined,
+    playAgainText: undefined,
 
     // not parameters
     facing: 'left',
@@ -68,6 +70,9 @@ var gameState = {
     enemyDirection: 'left',
     enemyTurnTimer: 0,
     score: 0,
+    gameComplete: false,
+    canPlayAgain: false,
+    blinkCount: 0,
     resizeTO: 0,
 
     create: function () {
@@ -130,6 +135,11 @@ var gameState = {
         this.emitter.minRotation = 0;
         this.emitter.maxRotation = 0;
 
+        this.gameCompleteText = this.createText(game.camera.width / 2, game.camera.height / 2 - 100, 'Euphrosine has ten dots', colors.normalStroke, 69);
+        this.gameCompleteText.visible = false;
+        this.playAgainText = this.createText(game.camera.width / 2, game.camera.height / 2 + 100, 'Hit spacebar to play again', colors.normalStroke, 42);
+        this.playAgainText.visible = false;
+
     },
 
     setCollisionDirectionOf: function (tile) {
@@ -188,7 +198,7 @@ var gameState = {
 
         game.physics.arcade.collide(this.player, this.layer);
 
-        if (this.jumpButton.isDown && (this.player.body.onFloor() || this.isClimbing) && game.time.now > this.jumpTimer) {
+        if (!this.gameComplete && this.jumpButton.isDown && (this.player.body.onFloor() || this.isClimbing) && game.time.now > this.jumpTimer) {
             this.player.body.velocity.y = -384;
             this.jumpTimer = game.time.now + 750;
             if (this.isClimbing) {
@@ -198,7 +208,7 @@ var gameState = {
             }
         }
 
-        if (this.isClimbing) {
+        if (!this.gameComplete && this.isClimbing) {
 
             this.player.animations.play('climb');
 
@@ -224,7 +234,7 @@ var gameState = {
             // not climbing
             this.player.body.velocity.x = 0;
 
-            if (this.cursors.left.isDown) {
+            if (!this.gameComplete && this.cursors.left.isDown) {
                 this.player.body.velocity.x = -200;
 
                 this.facing = 'left';
@@ -240,7 +250,7 @@ var gameState = {
                     }
                 }
 
-            } else if (this.cursors.right.isDown) {
+            } else if (!this.gameComplete && this.cursors.right.isDown) {
                 this.player.body.velocity.x = 200;
 
                 this.facing = 'right';
@@ -266,7 +276,7 @@ var gameState = {
                         this.player.animations.play('idle-right');
                     }
                 } else {
-                    if (this.cursors.up.isDown) {
+                    if (!this.gameComplete && this.cursors.up.isDown) {
                         // float
                         this.player.body.velocity.y = Math.min(40, this.player.body.velocity.y);
                         this.player.animations.play('float');
@@ -282,7 +292,7 @@ var gameState = {
             }
         }
 
-        // enemy movment
+        // enemy movement
         game.physics.arcade.collide(this.enemy, this.layer);
 
         this.enemy.body.velocity.x = 0;
@@ -344,6 +354,19 @@ var gameState = {
 
         clouds.tilePosition.x -= 1;
 
+        if (this.gameComplete && this.canPlayAgain) {
+
+            this.blinkCount++;
+            if (this.blinkCount > 15) {
+                this.blinkCount = 0;
+                this.playAgainText.visible = !this.playAgainText.visible;
+            }
+
+            if (this.jumpButton.isDown) {
+                this.restartGame();
+            }
+        }
+
     },
 
     playerEnemyOverlapped: function (player, enemy) {
@@ -366,10 +389,47 @@ var gameState = {
         // update score
         this.score++;
         if (this.score >= 10) {
-            console.log('You won!');
+            //console.log('You won!');
             this.score = 10;
+            this.gameComplete = true;
+            this.gameCompleteText.visible = true;
+            game.time.events.add(Phaser.Timer.SECOND * 3, function () {
+                this.canPlayAgain = true;
+                this.playAgainText.visible = true;
+            }, this);
         }
         this.player.loadTexture('player-' + this.score);
+
+    },
+
+    restartGame: function () {
+
+        this.player.loadTexture('player');
+        this.player.body.velocity.x = 0;
+        this.player.body.velocity.y = 0;
+        this.player.body.x = this.startPoint.x;
+        this.player.body.y = this.startPoint.y;
+        this.gameComplete = false;
+        this.gameCompleteText.visible = false;
+        this.canPlayAgain = false;
+        this.playAgainText.visible = false;
+        this.score = 0;
+
+    },
+
+    createText: function (x, y, text, color, size) {
+
+        var textSprite = game.add.text(x, y, text);
+        textSprite.fixedToCamera = true;
+        textSprite.cameraOffset.x = x;
+        textSprite.cameraOffset.y = y;
+        textSprite.anchor.setTo(0.5);
+        textSprite.font = fontName;
+        textSprite.fontSize = size;
+        textSprite.fill = color;
+        textSprite.align = 'center';
+
+        return textSprite;
 
     },
 
@@ -387,6 +447,11 @@ var gameState = {
         clouds.width = game.width;
         clouds.height = game.height;
 
+        this.gameCompleteText.cameraOffset.x = game.camera.width / 2;
+        this.gameCompleteText.cameraOffset.y = game.camera.height / 2 - 100;
+        this.playAgainText.cameraOffset.x = game.camera.width / 2;
+        this.playAgainText.cameraOffset.y = game.camera.height / 2 + 100;
+
     },
 
     shutdown: function () {
@@ -399,6 +464,8 @@ var gameState = {
         this.jumpButton = undefined;
         this.enemy = undefined;
         this.emitter = undefined;
+        this.gameCompleteText = undefined;
+        this.playAgainText = undefined;
 
     },
 
