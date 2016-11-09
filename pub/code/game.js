@@ -496,6 +496,7 @@ var loadState = {
         game.load.spritesheet('enemy', 'assets/sprites/enemy.png', 32, 32);
         game.load.image('clouds', 'assets/sprites/clouds.png');
         game.load.spritesheet('particles', 'assets/sprites/particles.png', 16, 16);
+        game.load.audio('ambient', ['assets/audio/ambient_mixdown.mp3', 'assets/audio/ambient_mixdown.ogg']);
 
         for (var p = 0; p <= 10; p++) {
             game.load.spritesheet('player-' + p, 'assets/sprites/player-' + p + '.png', 32, 32);
@@ -615,6 +616,9 @@ var splashState = {
 
     create: function () {
 
+        music = game.add.audio('ambient');
+        music.loopFull();
+
         clouds = game.make.tileSprite(0, 0, game.width, game.height, 'clouds');
         game.stage.addChildAt(clouds, 0);
 
@@ -667,6 +671,8 @@ var gameData;
 
 var fontName = 'monospace';
 var googleFontName = 'Sue Ellen Francisco';
+
+var music;
 
 var fx;
 window.PhaserGlobal = { disableWebAudio: true };

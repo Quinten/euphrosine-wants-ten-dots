@@ -4,6 +4,9 @@ var splashState = {
 
     create: function () {
 
+        music = game.add.audio('ambient');
+        music.loopFull();
+
         clouds = game.make.tileSprite(0, 0, game.width, game.height, 'clouds');
         game.stage.addChildAt(clouds, 0);
 
