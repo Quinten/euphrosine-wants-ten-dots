@@ -710,4 +710,9 @@ window.onload = function() {
 
     game.state.start('boot');
 
+    window.focus();
+    document.body.addEventListener('click',function(e) {
+        window.focus();
+    },false);
+
 };
