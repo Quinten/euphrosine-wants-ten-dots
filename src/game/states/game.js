@@ -354,6 +354,9 @@ var gameState = {
                 this.canPlayAgain = true;
                 this.playAgainText.visible = true;
             }, this);
+            fx.play('reward');
+        } else {
+            fx.play('powerup');
         }
         this.player.loadTexture('player-' + this.score);
 
@@ -371,6 +374,7 @@ var gameState = {
         this.canPlayAgain = false;
         this.playAgainText.visible = false;
         this.score = 0;
+        fx.play('coin');
 
     },
 

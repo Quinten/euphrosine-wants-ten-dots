@@ -397,6 +397,9 @@ var gameState = {
                 this.canPlayAgain = true;
                 this.playAgainText.visible = true;
             }, this);
+            fx.play('reward');
+        } else {
+            fx.play('powerup');
         }
         this.player.loadTexture('player-' + this.score);
 
@@ -414,6 +417,7 @@ var gameState = {
         this.canPlayAgain = false;
         this.playAgainText.visible = false;
         this.score = 0;
+        fx.play('coin');
 
     },
 
@@ -489,7 +493,7 @@ var loadState = {
         game.load.json('gameData', 'assets/data/game.json');
         game.load.script('webfont', '//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js');
         //game.load.image('square', 'assets/sprites/square.png');
-        //game.load.audio('sfx', 'assets/sounds/fx_mixdown.mp3');
+        game.load.audio('sfx', ['assets/audio/fx_mixdown.mp3','assets/audio/fx_mixdown.ogg']);
         game.load.tilemap('level', 'assets/tilemaps/data/level.json', null, Phaser.Tilemap.TILED_JSON);
         game.load.image('tiles', 'assets/tilemaps/tiles/tiles.png');
         game.load.spritesheet('player', 'assets/sprites/player.png', 32, 32);
@@ -506,9 +510,13 @@ var loadState = {
 
     create: function () {
 
-        //fx = game.add.audio('sfx');
-        //fx.allowMultiple = true;
-        //fx.addMarker('sound_name', 1, 0.5);
+        fx = game.add.audio('sfx');
+        fx.allowMultiple = true;
+        fx.addMarker('powerup', 2, 1);
+        fx.addMarker('hit', 4, 1);
+        fx.addMarker('jump', 6, 1);
+        fx.addMarker('coin', 8, 1);
+        fx.addMarker('reward', 10, 4);
         // ...
 
         gameData = game.cache.getJSON('gameData');
@@ -564,6 +572,7 @@ var menuState = {
         if (this.spaceKey.downDuration(1000) && !this.switched) {
             //console.log('switched');
             this.switched = true;
+            fx.play('coin');
             game.state.start('game');
         }
 
