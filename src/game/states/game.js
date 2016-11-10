@@ -16,6 +16,7 @@ var gameState = {
     emitter: undefined,
     gameCompleteText: undefined,
     playAgainText: undefined,
+    pausedText: undefined,
 
     // not parameters
     facing: 'left',
@@ -97,6 +98,19 @@ var gameState = {
         this.playAgainText = this.createText(game.camera.width / 2, game.camera.height / 2 + 100, 'Hit spacebar to play again', colors.normalStroke, 42);
         this.playAgainText.visible = false;
 
+        game.onPause.add(this.onGamePause, this);
+        game.onResume.add(this.onGameResume, this);
+        this.pausedText = this.createText(game.camera.width / 2, game.camera.height / 2, 'Click anywhere to resume game', colors.normalStroke, 42);
+        this.pausedText.visible = false;
+
+    },
+
+    onGamePause: function () {
+        this.pausedText.visible = true;
+    },
+
+    onGameResume: function () {
+        this.pausedText.visible = false;
     },
 
     setCollisionDirectionOf: function (tile) {
@@ -412,6 +426,8 @@ var gameState = {
         this.gameCompleteText.cameraOffset.y = game.camera.height / 2 - 100;
         this.playAgainText.cameraOffset.x = game.camera.width / 2;
         this.playAgainText.cameraOffset.y = game.camera.height / 2 + 100;
+        this.pausedText.cameraOffset.x = game.camera.width / 2;
+        this.pausedText.cameraOffset.y = game.camera.height / 2;
 
     },
 
@@ -427,6 +443,7 @@ var gameState = {
         this.emitter = undefined;
         this.gameCompleteText = undefined;
         this.playAgainText = undefined;
+        this.pausedText = undefined;
 
     },
 
