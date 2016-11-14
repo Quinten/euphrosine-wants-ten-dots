@@ -128,7 +128,7 @@ var gameState = {
         this.enemy.animations.add('roll-right', [0,1,2], 12, true);
 
         this.emitter = game.add.emitter(this.player.position.x, this.player.position.y, 200);
-        this.emitter.makeParticles('particles', [0,1,2], 200, true, false);
+        this.emitter.makeParticles('particles', [0,1], 200, true, false);
         this.emitter.minParticleSpeed.setTo(-200, -300);
         this.emitter.maxParticleSpeed.setTo(200, -400);
         this.emitter.gravity = 150;
