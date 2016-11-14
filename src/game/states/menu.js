@@ -29,7 +29,7 @@ var menuState = {
 
     update: function () {
 
-        if (this.spaceKey.downDuration(1000) && !this.switched) {
+        if ((pad1.justPressed(Phaser.Gamepad.XBOX360_A) || this.spaceKey.downDuration(1000)) && !this.switched) {
             //console.log('switched');
             this.switched = true;
             fx.play('coin');

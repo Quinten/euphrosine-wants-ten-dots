@@ -2,6 +2,8 @@ var game;
 
 var gameData;
 
+var pad1;
+
 var fontName = 'monospace';
 var googleFontName = 'Sue Ellen Francisco';
 

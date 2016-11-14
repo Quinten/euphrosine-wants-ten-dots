@@ -136,7 +136,7 @@ var gameState = {
             this.player.body.allowGravity = true;
         }
 
-        if (this.cursors.up.isDown && game.time.now > this.climbTimer) {
+        if ((this.cursors.up.isDown || pad1.isDown(Phaser.Gamepad.XBOX360_DPAD_UP) || pad1.axis(Phaser.Gamepad.XBOX360_STICK_LEFT_Y) < -0.1) && game.time.now > this.climbTimer) {
             if (this.canClimb && !this.isClimbing) {
                 this.isClimbing = true;
                 this.justClimbed = true;
@@ -169,7 +169,7 @@ var gameState = {
 
         game.physics.arcade.collide(this.player, this.layer);
 
-        if (!this.gameComplete && this.jumpButton.isDown && (this.player.body.onFloor() || this.isClimbing) && game.time.now > this.jumpTimer) {
+        if (!this.gameComplete && (this.jumpButton.isDown || pad1.justPressed(Phaser.Gamepad.XBOX360_A)) && (this.player.body.onFloor() || this.isClimbing) && game.time.now > this.jumpTimer) {
             this.player.body.velocity.y = -384;
             this.jumpTimer = game.time.now + 750;
             if (this.isClimbing) {
@@ -183,16 +183,16 @@ var gameState = {
 
             this.player.animations.play('climb');
 
-            if (this.cursors.up.isDown) {
+            if (this.cursors.up.isDown || pad1.isDown(Phaser.Gamepad.XBOX360_DPAD_UP) || pad1.axis(Phaser.Gamepad.XBOX360_STICK_LEFT_Y) < -0.1) {
                 this.player.body.velocity.x = 0;
                 this.player.body.velocity.y = -50;
-            } else if (this.cursors.down.isDown) {
+            } else if (this.cursors.down.isDown || pad1.isDown(Phaser.Gamepad.XBOX360_DPAD_DOWN) || pad1.axis(Phaser.Gamepad.XBOX360_STICK_LEFT_Y) > 0.1) {
                 this.player.body.velocity.x = 0;
                 this.player.body.velocity.y = 50;
-            } else if (this.cursors.left.isDown) {
+            } else if (this.cursors.left.isDown || pad1.isDown(Phaser.Gamepad.XBOX360_DPAD_LEFT) || pad1.axis(Phaser.Gamepad.XBOX360_STICK_LEFT_X) < -0.1) {
                 this.player.body.velocity.x = -50;
                 this.player.body.velocity.y = 0;
-            } else if (this.cursors.right.isDown) {
+            } else if (this.cursors.right.isDown || pad1.isDown(Phaser.Gamepad.XBOX360_DPAD_RIGHT) || pad1.axis(Phaser.Gamepad.XBOX360_STICK_LEFT_X) > 0.1) {
                 this.player.body.velocity.x = 50;
                 this.player.body.velocity.y = 0;
             } else {
@@ -205,14 +205,14 @@ var gameState = {
             // not climbing
             this.player.body.velocity.x = 0;
 
-            if (!this.gameComplete && this.cursors.left.isDown) {
+            if (!this.gameComplete && (this.cursors.left.isDown || pad1.isDown(Phaser.Gamepad.XBOX360_DPAD_LEFT) || pad1.axis(Phaser.Gamepad.XBOX360_STICK_LEFT_X) < -0.1)) {
                 this.player.body.velocity.x = -200;
 
                 this.facing = 'left';
                 if (this.player.body.onFloor()) {
                     this.player.animations.play('run-left');
                 } else {
-                    if (this.cursors.up.isDown) {
+                    if (this.cursors.up.isDown || pad1.isDown(Phaser.Gamepad.XBOX360_DPAD_UP) || pad1.axis(Phaser.Gamepad.XBOX360_STICK_LEFT_Y) < -0.1) {
                         // float
                         this.player.body.velocity.y = Math.min(40, this.player.body.velocity.y);
                         this.player.animations.play('float');
@@ -221,14 +221,14 @@ var gameState = {
                     }
                 }
 
-            } else if (!this.gameComplete && this.cursors.right.isDown) {
+            } else if (!this.gameComplete && (this.cursors.right.isDown || pad1.isDown(Phaser.Gamepad.XBOX360_DPAD_RIGHT) || pad1.axis(Phaser.Gamepad.XBOX360_STICK_LEFT_X) > 0.1)) {
                 this.player.body.velocity.x = 200;
 
                 this.facing = 'right';
                 if (this.player.body.onFloor()) {
                     this.player.animations.play('run-right');
                 } else {
-                    if (this.cursors.up.isDown) {
+                    if (this.cursors.up.isDown || pad1.isDown(Phaser.Gamepad.XBOX360_DPAD_UP) || pad1.axis(Phaser.Gamepad.XBOX360_STICK_LEFT_Y) < -0.1) {
                         // float
                         this.player.body.velocity.y = Math.min(40, this.player.body.velocity.y);
                         this.player.animations.play('float');
@@ -247,7 +247,7 @@ var gameState = {
                         this.player.animations.play('idle-right');
                     }
                 } else {
-                    if (!this.gameComplete && this.cursors.up.isDown) {
+                    if (!this.gameComplete && (this.cursors.up.isDown || pad1.isDown(Phaser.Gamepad.XBOX360_DPAD_UP) || pad1.axis(Phaser.Gamepad.XBOX360_STICK_LEFT_Y) < -0.1)) {
                         // float
                         this.player.body.velocity.y = Math.min(40, this.player.body.velocity.y);
                         this.player.animations.play('float');
@@ -333,7 +333,7 @@ var gameState = {
                 this.playAgainText.visible = !this.playAgainText.visible;
             }
 
-            if (this.jumpButton.isDown) {
+            if (this.jumpButton.isDown || pad1.justPressed(Phaser.Gamepad.XBOX360_A)) {
                 this.restartGame();
             }
         }
