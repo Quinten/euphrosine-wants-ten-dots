@@ -77,6 +77,8 @@ var gameState = {
     gameComplete: false,
     canPlayAgain: false,
     blinkCount: 0,
+    dotBlinkTimer: 0,
+    playerTextureName: 'player-0',
     resizeTO: 0,
 
     create: function () {
@@ -148,6 +150,7 @@ var gameState = {
         game.onResume.add(this.onGameResume, this);
         this.pausedText = this.createText(game.camera.width / 2, game.camera.height / 2, 'Click anywhere to resume game', colors.normalStroke, 42);
         this.pausedText.visible = false;
+        this.dotBlinkTimer = game.time.now;
 
     },
 
@@ -382,6 +385,17 @@ var gameState = {
             if (this.jumpButton.isDown || pad1.justPressed(Phaser.Gamepad.XBOX360_A)) {
                 this.restartGame();
             }
+        } else if ((this.score > 0) && ((this.dotBlinkTimer > game.time.now) || (this.playerTextureName != ('player-' + this.score)))) {
+            this.blinkCount++;
+            if (this.blinkCount > 10) {
+                this.playerTextureName = 'player-' + (this.score - 1);
+                this.player.loadTexture('player-' + (this.score - 1), this.player.frame, false);
+            }
+            if (this.blinkCount > 20) {
+                this.blinkCount = 0;
+                this.playerTextureName = 'player-' + this.score;
+                this.player.loadTexture('player-' + this.score, this.player.frame, false);
+            }
         }
 
     },
@@ -410,7 +424,7 @@ var gameState = {
             this.score = 10;
             this.gameComplete = true;
             this.gameCompleteText.visible = true;
-            game.time.events.add(Phaser.Timer.SECOND * 3, function () {
+            game.time.events.add(Phaser.Timer.SECOND * 5, function () {
                 this.canPlayAgain = true;
                 this.playAgainText.visible = true;
             }, this);
@@ -419,6 +433,8 @@ var gameState = {
             fx.play('powerup');
         }
         this.player.loadTexture('player-' + this.score);
+        this.dotBlinkTimer = game.time.now + 4000;
+        this.blinkCount = 0;
 
     },
 
