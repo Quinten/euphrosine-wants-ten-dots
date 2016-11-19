@@ -9,6 +9,7 @@ var gameState = {
     map: undefined,
     layer: undefined,
     climbLayer: undefined,
+    levelflat: undefined,
     player: undefined,
     cursors: undefined,
     jumpButton: undefined,
@@ -38,24 +39,29 @@ var gameState = {
     create: function () {
 
         game.time.advancedTiming = true; // for debuging the fps
+        //clouds.visible = false;
 
         game.physics.startSystem(Phaser.Physics.ARCADE);
         game.physics.arcade.gravity.y = 800;
 
         this.map = game.add.tilemap('level');
-        this.map.addTilesetImage('tiles');
+        //this.map.addTilesetImage('tiles');
 
         this.map.setCollisionByExclusion([]);
 
         this.map.forEach(this.setCollisionDirectionOf, this, 0, 0, 128, 128);
 
         this.layer = this.map.createLayer('platformlayer');
+        this.layer.visible = false;
         //this.layer.debug = true;
         this.layer.resizeWorld();
 
         this.climbLayer = this.map.createLayer('climblayer');
+        this.climbLayer.visible = false;
         //this.climbLayer.debug = true;
         //this.climbLayer.resizeWorld();
+
+        this.levelflat = game.add.image(0, 0, 'levelflat');
 
         this.player = game.add.sprite(this.startPoint.x, this.startPoint.y, 'player');
 
@@ -85,6 +91,8 @@ var gameState = {
         this.enemy.animations.add('idle', [0], 8, true);
         this.enemy.animations.add('roll-left', [0,2,1], 12, true);
         this.enemy.animations.add('roll-right', [0,1,2], 12, true);
+
+        //game.camera.follow(this.enemy);
 
         this.emitter = game.add.emitter(this.player.position.x, this.player.position.y, 200);
         this.emitter.makeParticles('particles', [0,1], 200, true, false);
@@ -452,6 +460,7 @@ var gameState = {
         this.map = undefined;
         this.layer = undefined;
         this.climbLayer = undefined;
+        this.levelflat = undefined;
         this.player = undefined;
         this.cursors = undefined;
         this.jumpButton = undefined;

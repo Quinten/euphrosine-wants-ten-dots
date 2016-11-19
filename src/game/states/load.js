@@ -11,6 +11,7 @@ var loadState = {
         game.load.audio('sfx', ['assets/audio/fx_mixdown.mp3','assets/audio/fx_mixdown.ogg']);
         game.load.tilemap('level', 'assets/tilemaps/data/level.json', null, Phaser.Tilemap.TILED_JSON);
         game.load.image('tiles', 'assets/tilemaps/tiles/tiles.png');
+        game.load.image('levelflat', 'assets/sprites/level.png');
         game.load.spritesheet('player', 'assets/sprites/player.png', 32, 32);
         game.load.spritesheet('enemy', 'assets/sprites/enemy.png', 32, 32);
         game.load.image('clouds', 'assets/sprites/clouds.png');
