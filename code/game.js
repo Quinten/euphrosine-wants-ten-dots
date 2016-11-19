@@ -33,6 +33,8 @@ var bootState = {
         // do settings
         game.stage.backgroundColor = colors.normalBG;
         game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
+        game.scale.fullScreenScaleMode = Phaser.ScaleManager.RESIZE;
+
         game.stage.smoothed = false; // none pixelated effect
         game.input.mouse.capture = true;
 
@@ -577,6 +579,7 @@ var loadState = {
 var menuState = {
 
     menuGroup: undefined,
+    spaceKey: undefined,
     switched: false,
     textstart: undefined,
     blinkCount: 0,
@@ -601,6 +604,11 @@ var menuState = {
         game.input.keyboard.addKeyCapture([ Phaser.Keyboard.SPACEBAR ]);
 
         this.switched = false;
+
+        if (!game.device.desktop) {
+            game.input.onDown.add(this.startFullScreen, this);
+        }
+
     },
 
     update: function () {
@@ -622,6 +630,15 @@ var menuState = {
 
     },
 
+    startFullScreen: function () {
+
+        game.input.onDown.remove(this.startFullScreen, this);
+        game.scale.startFullScreen(false);
+        this.switched = true;
+        game.state.start('game');
+
+    },
+
     resize: function () {
 
         this.menuGroup.x = game.world.centerX;
@@ -637,6 +654,7 @@ var menuState = {
     shutdown: function () {
 
         this.menuGroup = undefined;
+        this.spaceKey = undefined;
         this.textstart = undefined;
 
     },
