@@ -19,7 +19,8 @@ module.exports = function(grunt) {
         },
         concat: {
             dist: {
-                src: [  "src/lib/phaser.min.js",
+                src: [  "src/lib/**/*.min.js",
+                        "src/game/plugins/**/*.js",
                         "src/game/states/**/*.js",
                         "src/game/substates/**/*.js",
                         "src/game/main.js"
