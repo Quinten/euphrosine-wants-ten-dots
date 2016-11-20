@@ -35,6 +35,11 @@ var bootState = {
         game.scale.scaleMode = Phaser.ScaleManager.RESIZE;
         game.scale.fullScreenScaleMode = Phaser.ScaleManager.RESIZE;
 
+        stageMask = new PIXI.Graphics();
+        stageMask.beginFill(0x00FF00);
+        stageMask.drawRect(0,0,2048,2048);
+        game.stage.mask = stageMask;
+
         game.stage.smoothed = false; // none pixelated effect
         game.input.mouse.capture = true;
 
@@ -522,7 +527,7 @@ var gameState = {
 
     render: function () {
 
-        //game.debug.text('FPS: ' + game.time.fps, 32, 32, "#ffffff");
+        game.debug.text('FPS: ' + game.time.fps, 32, 32, "#ffffff");
         //game.debug.spriteInfo(this.player, 32, 64);
         //game.debug.spriteInfo(this.enemy, 496, 64);
 
@@ -763,6 +768,8 @@ WebFontConfig = {
         families: [googleFontName]
     }
 };
+
+var stageMask;
 
 window.onload = function() {
 
