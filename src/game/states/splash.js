@@ -14,7 +14,7 @@ var splashState = {
         text.anchor.setTo(0.5);
 
         text.font = fontName;
-        text.fontSize = 42;
+        text.fontSize = (game.device.touch) ? 32 : 42;
 
         text.fill = colors.normalStroke;
 

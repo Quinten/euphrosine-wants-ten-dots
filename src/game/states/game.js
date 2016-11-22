@@ -113,7 +113,8 @@ var gameState = {
 
         game.onPause.add(this.onGamePause, this);
         game.onResume.add(this.onGameResume, this);
-        this.pausedText = this.createText(game.camera.width / 2, game.camera.height / 2, 'Click anywhere to resume game', colors.normalStroke, 42);
+        var downAction = (game.device.touch) ? 'Tap' : 'Click';
+        this.pausedText = this.createText(game.camera.width / 2, game.camera.height / 2, downAction + ' anywhere to resume game', colors.normalStroke, 42);
         this.pausedText.visible = false;
         this.dotBlinkTimer = game.time.now;
 
