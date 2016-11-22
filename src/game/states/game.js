@@ -219,7 +219,7 @@ var gameState = {
                 this.player.animations.stop();
                 this.player.body.velocity.x = 0;
                 this.player.body.velocity.y = 0;
-                this.arrow.visible = true;
+                //this.arrow.visible = true;
             }
 
         } else {
@@ -268,7 +268,7 @@ var gameState = {
                     } else {
                         this.player.animations.play('idle-right');
                     }
-                    this.arrow.visible = true;
+                    //this.arrow.visible = true;
                 } else {
                     if (!this.gameComplete && (this.cursors.up.isDown || game.touchControl.cursors.up || pad1.isDown(Phaser.Gamepad.XBOX360_DPAD_UP) || pad1.axis(Phaser.Gamepad.XBOX360_STICK_LEFT_Y) < -0.1)) {
                         // float
