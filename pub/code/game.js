@@ -327,9 +327,9 @@ var gameState = {
         this.emitter.minRotation = 0;
         this.emitter.maxRotation = 0;
 
-        this.gameCompleteText = this.createText(game.camera.width / 2, game.camera.height / 2 - 100, 'Euphrosine has ten dots', colors.normalStroke, 69);
+        this.gameCompleteText = this.createText(game.camera.width / 2, game.camera.height / 2 - 100, 'Euphrosine has ten dots', colors.normalStroke, (game.device.touch) ? 36 : 69);
         this.gameCompleteText.visible = false;
-        this.playAgainText = this.createText(game.camera.width / 2, game.camera.height / 2 + 100, 'Hit spacebar to play again', colors.normalStroke, 42);
+        this.playAgainText = this.createText(game.camera.width / 2, game.camera.height / 2 + 100, (game.device.touch) ? 'Tap anywhere to play again' : 'Hit spacebar to play again', colors.normalStroke, (game.device.touch) ? 32 : 42);
         this.playAgainText.visible = false;
 
         game.onPause.add(this.onGamePause, this);
