@@ -14,7 +14,6 @@ var loadState = {
         game.load.image('levelflat', 'assets/sprites/level.png');
         game.load.spritesheet('player', 'assets/sprites/player.png', 32, 32);
         game.load.spritesheet('enemy', 'assets/sprites/enemy.png', 32, 32);
-        game.load.image('arrow', 'assets/sprites/arrow.png');
         game.load.image('clouds', 'assets/sprites/clouds.png');
         game.load.spritesheet('particles', 'assets/sprites/particles.png', 16, 16);
         game.load.audio('ambient', ['assets/audio/ambient_mixdown.mp3', 'assets/audio/ambient_mixdown.ogg']);

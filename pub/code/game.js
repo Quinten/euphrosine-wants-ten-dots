@@ -239,7 +239,6 @@ var gameState = {
     gameCompleteText: undefined,
     playAgainText: undefined,
     pausedText: undefined,
-    arrow: undefined,
 
     // not parameters
     facing: 'left',
@@ -300,9 +299,6 @@ var gameState = {
         this.player.animations.add('jump-right', [13], 12, true);
         this.player.animations.add('float', [18,19,20,21], 12, true);
         this.player.animations.add('climb', [14,15,16,17], 12, true);
-
-        this.arrow = game.add.image(this.player.x, this.player.y, 'arrow');
-        this.arrow.anchor.setTo(0.5);
 
         game.camera.follow(this.player);
 
@@ -422,7 +418,6 @@ var gameState = {
         if (!this.gameComplete && this.isClimbing) {
 
             this.player.animations.play('climb');
-            this.arrow.visible = false;
 
             if (this.cursors.up.isDown || game.touchControl.cursors.up || pad1.isDown(Phaser.Gamepad.XBOX360_DPAD_UP) || pad1.axis(Phaser.Gamepad.XBOX360_STICK_LEFT_Y) < -0.1) {
                 this.player.body.velocity.x = 0;
@@ -440,13 +435,11 @@ var gameState = {
                 this.player.animations.stop();
                 this.player.body.velocity.x = 0;
                 this.player.body.velocity.y = 0;
-                //this.arrow.visible = true;
             }
 
         } else {
             // not climbing
             this.player.body.velocity.x = 0;
-            this.arrow.visible = false;
 
             if (!this.gameComplete && (this.cursors.left.isDown || game.touchControl.cursors.left || pad1.isDown(Phaser.Gamepad.XBOX360_DPAD_LEFT) || pad1.axis(Phaser.Gamepad.XBOX360_STICK_LEFT_X) < -0.1)) {
                 this.player.body.velocity.x = -200;
@@ -489,7 +482,6 @@ var gameState = {
                     } else {
                         this.player.animations.play('idle-right');
                     }
-                    //this.arrow.visible = true;
                 } else {
                     if (!this.gameComplete && (this.cursors.up.isDown || game.touchControl.cursors.up || pad1.isDown(Phaser.Gamepad.XBOX360_DPAD_UP) || pad1.axis(Phaser.Gamepad.XBOX360_STICK_LEFT_Y) < -0.1)) {
                         // float
@@ -566,13 +558,6 @@ var gameState = {
 
         game.physics.arcade.collide(this.emitter, this.layer);
         this.emitter.forEachExists(game.world.wrap, game.world);
-
-        if (this.arrow.visible) {
-            var compassAngle = this.player.position.angle(this.enemy.position);
-            this.arrow.rotation = compassAngle;
-            this.arrow.x = this.player.body.x + 8;
-            this.arrow.y = this.player.body.y + 4;
-        }
 
         clouds.tilePosition.x -= 1;
 
@@ -709,7 +694,6 @@ var gameState = {
         this.gameCompleteText = undefined;
         this.playAgainText = undefined;
         this.pausedText = undefined;
-        this.arrow = undefined;
 
     },
 
@@ -740,7 +724,6 @@ var loadState = {
         game.load.image('levelflat', 'assets/sprites/level.png');
         game.load.spritesheet('player', 'assets/sprites/player.png', 32, 32);
         game.load.spritesheet('enemy', 'assets/sprites/enemy.png', 32, 32);
-        game.load.image('arrow', 'assets/sprites/arrow.png');
         game.load.image('clouds', 'assets/sprites/clouds.png');
         game.load.spritesheet('particles', 'assets/sprites/particles.png', 16, 16);
         game.load.audio('ambient', ['assets/audio/ambient_mixdown.mp3', 'assets/audio/ambient_mixdown.ogg']);
