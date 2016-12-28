@@ -940,7 +940,8 @@ var googleFontName = 'Sue Ellen Francisco';
 
 var music;
 var fx;
-window.PhaserGlobal = { disableWebAudio: true };
+var audioFallback = (Phaser.Device.isAndroidStockBrowser()) ? true : false;
+window.PhaserGlobal = { disableWebAudio: audioFallback };
 
 var colors = {normalBG: '#91d2d9', normalStroke: '#c0392b'};
 var tints = {normalBG: 0x91d2d9, normalStroke: 0xc0392b};
