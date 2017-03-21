@@ -1,14 +1,14 @@
-# Euphrosine wants ten dots
-
 ### Because everyone loves dots...
 
-## Briefing
+# Euphrosine wants ten dots
+
+### Briefing
 
 A game for the [10th Anniversary] ★  Kongregate Game Jam
 
-Theme: The Number 10
+Theme: `The Number 10`
 
-Link: http://www.kongregate.com/forums/1/topics/673084
+Game Jam Link: http://www.kongregate.com/forums/1/topics/673084
 
 Optional modifiers
 
@@ -18,30 +18,24 @@ Modifier #2 - Mouth Sounds
 
 Modifier #3 - Two Buttons
 
-~~Bonus Modifier - This Vine~~
+Bonus Modifier - This Vine
 
-## (Old) Concept
+The game had to be made in `7 days`.
 
-It is an autorun platform game where you are a running ladybug with one digit on your back (1 to 9). You run automatically but can change direction(left or right) by pressing `d` or jump by pressing `w`. (You can remap these keys).
+I only used the No Violence modifier.
 
-There are other insects that are obstacles. They also have a digit on them (1 to 9). If you hit them their number is added to your number. The ladybug gets the resulting number. If that number is larger then 10 then 10 is substracted from it. Resulting in one digit. For example 7 + 6 = 13 - 10 = 3. If the result of the collision is exactly 10: then it is taboo and the game is over.
+### Simple Final Concept
 
-You can score points by overflowing the number 10. You then get the amount above 10 as points.
+You play as the ladybug Euphrosine. She can run, jump, climb and float.
 
-There are 9 different insects with different abilities:
+Euphrosine likes dice and wants to collect their dots. When she catches a dice, a dot will appear on her back. The game ends when she collected 10 dots.
 
-- 1: static
-- 2: flying around random
-- 3: bouncing around random
-- 4: rising and moving right on ceiling
-- 5: rising and moving left on ceiling
-- 6: rising and changing direction
-- 7: dropping a moving left ground
-- 8: dropping a moving right ground
-- 9: dropping and changing direction on collision
+### Where/how to play
 
-Some insects collide, some pass each other
+You can play the sweet full browser version on https://quinten.github.io/euphrosine-wants-ten-dots/
 
-## Simpler Concept
+On a desktop computer use the arrow keys and the spacebar.
 
-You play as the ladybug Euphrosine. That likes dice and wants to collect their dots. You can run, jump, climb and float.
+On a mobile device you can touch the screen with 2 fingers/thumbs.
+
+There is also gamepad support.
