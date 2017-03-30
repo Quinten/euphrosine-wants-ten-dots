@@ -2,6 +2,13 @@
 
 # Euphrosine wants ten dots
 
+[![Play Euphrosine wants ten dots][screenshot]][screenshotlink]
+
+[screenshot]: https://github.com/Quinten/euphrosine-wants-ten-dots/blob/master/scratch/euphrosine-has-an-itch.gif?raw=true (Play Euphrosine wants ten dots)
+[screenshotlink]: https://quinten.github.io/euphrosine-wants-ten-dots/
+
+[Play the game](https://quinten.github.io/euphrosine-wants-ten-dots/)
+
 ### Briefing
 
 A game for the [10th Anniversary] ★  Kongregate Game Jam
