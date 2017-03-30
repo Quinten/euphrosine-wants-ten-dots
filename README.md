@@ -20,9 +20,9 @@ Modifier #3 - Two Buttons
 
 Bonus Modifier - This Vine
 
-The game had to be made in `7 days`.
-
 I only used the No Violence modifier.
+
+The game had to be made in `7 days`. But after the jam i fixed some bugs and added some extra features like support for touch devices and gamepads.
 
 ### Simple Final Concept
 
@@ -39,3 +39,7 @@ On a desktop computer use the arrow keys and the spacebar.
 On a mobile device you can touch the screen with 2 fingers/thumbs.
 
 There is also gamepad support.
+
+### License
+
+'Euphrosine wants ten dots' is released under the [MIT License](http://opensource.org/licenses/MIT).
