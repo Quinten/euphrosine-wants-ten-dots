@@ -89,6 +89,4 @@ When you are done editing the map, you can export it as a json file to `pub/asse
 
 For better performance i also export the tilemap from Tiled as a flattened image to `pub/assets/sprites/level.png`
 
-
-
-That's about! Have fun!
+That's about it! Have fun!
