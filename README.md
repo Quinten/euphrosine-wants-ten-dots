@@ -15,7 +15,7 @@ A game for the [10th Anniversary] ★  Kongregate Game Jam
 
 Theme: `The Number 10`
 
-Game Jam Link: http://www.kongregate.com/forums/1/topics/673084
+Game Jam Link: [Forum thread](http://www.kongregate.com/forums/1/topics/673084)
 
 Optional modifiers
 
