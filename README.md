@@ -50,3 +50,27 @@ There is also gamepad support.
 ### License
 
 'Euphrosine wants ten dots' is released under the [MIT License](http://opensource.org/licenses/MIT).
+
+### Getting started with the code
+
+Make sure you have node and npm installed. See https://nodejs.org
+
+If that is installed you must also install the grunt cli globally.
+
+    npm install -g grunt-cli
+
+Then clone or fork this repo.
+
+To install development tools you must run these commands in the root of the project:
+
+    npm install
+
+To run the game on your local machine:
+
+    grunt
+
+If you forked the repo you can use this handy command to deploy the pub folder to your gh-pages:
+
+    git subtree push --prefix pub/ origin gh-pages
+
+This will make only the pub folder available on gh-pages.
