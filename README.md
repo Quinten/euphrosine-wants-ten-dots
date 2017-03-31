@@ -41,6 +41,8 @@ Euphrosine likes dice and wants to collect their dots. When she catches a dice, 
 
 You can play the sweet full browser version on https://quinten.github.io/euphrosine-wants-ten-dots/
 
+The Kongregate link is http://www.kongregate.com/games/qubecity/euphrosine-wants-ten-dots
+
 On a desktop computer use the arrow keys and the spacebar.
 
 On a mobile device you can touch the screen with 2 fingers/thumbs.
@@ -65,12 +67,28 @@ To install development tools you must run these commands in the root of the proj
 
     npm install
 
-To run the game on your local machine:
+To run the game on your local machine simply type:
 
     grunt
+
+This will merge and minify all the js files, create a local webserver, open the page and continue watching for file changes in the js files and then merge and minfy these files again.
 
 If you forked the repo you can use this handy command to deploy the pub folder to your gh-pages:
 
     git subtree push --prefix pub/ origin gh-pages
 
 This will make only the pub folder available on gh-pages.
+
+### Editing the tilemap
+
+In the `scratch` folder you will find a file called `level.tmx`. To edit this file you can use a program called 'Tiled'. See http://www.mapeditor.org/
+
+The map is split into two layers 'platformlayer' and 'climblayer'.
+
+When you are done editing the map, you can export it as a json file to `pub/assets/tilemaps/data/level.json`
+
+For better performance i also export the tilemap from Tiled as a flattened image to `pub/assets/sprites/level.png`
+
+
+
+That's about! Have fun!
