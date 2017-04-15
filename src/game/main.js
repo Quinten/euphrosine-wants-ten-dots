@@ -44,3 +44,13 @@ window.onload = function() {
     },false);
 
 };
+
+function checkReferrer(e) {
+    if (e.key === 'r') {
+        if (window.console) {
+            console.log(document.referrer);
+        }
+        window.removeEventListener('keyup', checkReferrer);
+    }
+}
+window.addEventListener('keyup', checkReferrer);
