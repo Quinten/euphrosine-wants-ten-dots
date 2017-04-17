@@ -984,4 +984,4 @@ function checkReferrer(e) {
         window.removeEventListener('keyup', checkReferrer);
     }
 }
-window.addEventListener('keyup', checkReferrer);
+//window.addEventListener('keyup', checkReferrer);
