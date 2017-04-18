@@ -13,6 +13,30 @@
                 padding: 0px;
                 margin: 0px;
             }
+            #fs-button {
+                display: block;
+                width: 32px;
+                height: 32px;
+                box-sizing: border-box;
+                padding: 2px;
+                background: rgba(255,255,255, .5);
+                border: 2px #989898 solid;
+                border-radius: 3px;
+                position: absolute;
+                bottom: 16px;
+                right: 16px;
+                opacity: .85;
+                display: none;
+            }
+            #fs-button:hover {
+                opacity: 1;
+            }
+            #fs-button img {
+                display: block;
+                width: 24px;
+                height: 24px;
+                margin: 0;
+            }
         </style>
 
         <meta property="fb:app_id" content="1828394244074889" />
@@ -25,13 +49,13 @@
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black" />
 
-        <link rel="apple-touch-icon" sizes="180x180" href="/euphrosine-wants-ten-dots/icons/apple-touch-icon.png">
-        <link rel="icon" type="image/png" href="/euphrosine-wants-ten-dots/icons/favicon-32x32.png" sizes="32x32">
-        <link rel="icon" type="image/png" href="/euphrosine-wants-ten-dots/icons/favicon-16x16.png" sizes="16x16">
-        <link rel="manifest" href="/euphrosine-wants-ten-dots/icons/manifest.json">
-        <link rel="mask-icon" href="/euphrosine-wants-ten-dots/icons/safari-pinned-tab.svg" color="#c74131">
-        <link rel="shortcut icon" href="/euphrosine-wants-ten-dots/icons/favicon.ico">
-        <meta name="msapplication-config" content="/euphrosine-wants-ten-dots/icons/browserconfig.xml">
+        <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
+        <link rel="icon" type="image/png" href="icons/favicon-32x32.png" sizes="32x32">
+        <link rel="icon" type="image/png" href="icons/favicon-16x16.png" sizes="16x16">
+        <link rel="manifest" href="icons/manifest.json">
+        <link rel="mask-icon" href="icons/safari-pinned-tab.svg" color="#c74131">
+        <link rel="shortcut icon" href="icons/favicon.ico">
+        <meta name="msapplication-config" content="icons/browserconfig.xml">
         <meta name="theme-color" content="#ffffff">
 
     </head>
@@ -47,6 +71,8 @@
         </script>
 
         <script type="text/javascript" src="code/game.min.js"></script>
+
+        <a href="javascript:void(0)" id="fs-button"><img src="img/cross.svg" /></a>
 
     </body>
 </html>
