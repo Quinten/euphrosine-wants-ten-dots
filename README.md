@@ -79,6 +79,10 @@ If you forked the repo you can use this handy command to deploy the pub folder t
 
 This will make only the pub folder available on gh-pages.
 
+Deploying to itch.io
+
+    butler push pub supernapie/euphrosine-wants-ten-dots:html5
+
 ### Editing the tilemap
 
 In the `scratch` folder you will find a file called `level.tmx`. To edit this file you can use a program called 'Tiled'. See http://www.mapeditor.org/
