@@ -41,6 +41,11 @@ var gameState = {
         game.time.advancedTiming = true; // for debuging the fps
         //clouds.visible = false;
 
+        // in game on desktop pause game when browser window loses focus
+        if (game.device.desktop) {
+            game.stage.disableVisibilityChange = false;
+        }
+
         game.physics.startSystem(Phaser.Physics.ARCADE);
         game.physics.arcade.gravity.y = 800;
 

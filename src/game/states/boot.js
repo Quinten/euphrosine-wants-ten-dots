@@ -15,7 +15,7 @@ var bootState = {
         game.stage.smoothed = false; // none pixelated effect
         game.input.mouse.capture = true;
 
-        // do not pause game when browser window loses focus
+        // at first do not pause game when browser window loses focus
         game.stage.disableVisibilityChange = true;
 
         game.input.gamepad.start();
