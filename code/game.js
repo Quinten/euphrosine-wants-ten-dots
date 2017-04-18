@@ -211,7 +211,7 @@ var bootState = {
         game.stage.smoothed = false; // none pixelated effect
         game.input.mouse.capture = true;
 
-        // do not pause game when browser window loses focus
+        // at first do not pause game when browser window loses focus
         game.stage.disableVisibilityChange = true;
 
         game.input.gamepad.start();
@@ -264,6 +264,11 @@ var gameState = {
 
         game.time.advancedTiming = true; // for debuging the fps
         //clouds.visible = false;
+
+        // in game on desktop pause game when browser window loses focus
+        if (game.device.desktop) {
+            game.stage.disableVisibilityChange = false;
+        }
 
         game.physics.startSystem(Phaser.Physics.ARCADE);
         game.physics.arcade.gravity.y = 800;
